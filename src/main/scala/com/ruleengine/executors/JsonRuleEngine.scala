@@ -4,12 +4,13 @@ import org.apache.logging.log4j.{ LogManager, Logger }
 import org.apache.spark.sql.SparkSession
 import com.ruleengine.utils.RuleEngineUtils
 import scala.io.Source
+import org.apache.spark.sql.DataFrame
 
 class JsonRuleEngine {
 
   val logger: Logger = LogManager.getLogger(JsonRuleEngine.this)
 
-  def executeJson(): Unit = {
+  def executeJson(): DataFrame = {
 
     val path = getClass.getResource("/Sample.json").getPath
     val spark = SparkSession
@@ -35,6 +36,6 @@ class JsonRuleEngine {
 
     println("Post Rule Data Frame")
     queryDf.show()
-
+    queryDf
   }
 }
